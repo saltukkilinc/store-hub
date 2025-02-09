@@ -10,17 +10,17 @@ import {
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
 
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
+import { Database, Store } from "lucide-react";
 const items = [
   {
-    title: "Home",
+    title: "Inventory",
     url: "/inventory",
-    icon: Home,
+    icon: Database,
   },
   {
-    title: "Inbox",
+    title: "Ready For Sale Products",
     url: "/ready-for-sale-products",
-    icon: Inbox,
+    icon: Store,
   },
 ];
 
