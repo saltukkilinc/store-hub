@@ -1,5 +1,8 @@
-import { Payment, columns } from "./columns";
-import { DataTable } from "./data-table";
+import {
+  Payment,
+  inventoryDataTableColumns,
+} from "./inventory-data-table-columns";
+import { DataTableGroup } from "../../components/data-table-group";
 
 async function getData(): Promise<Payment[]> {
   const randomPayments: Payment[] = Array.from({ length: 15 }, (_, index) => ({
@@ -19,7 +22,7 @@ export default async function InventoryManagementPage() {
   return (
     <main className="container mx-auto p-8">
       <h1>Inventory Management</h1>
-      <DataTable columns={columns} data={data} />
+      <DataTableGroup columns={inventoryDataTableColumns} data={data} />
     </main>
   );
 }
