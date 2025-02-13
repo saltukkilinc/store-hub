@@ -20,6 +20,7 @@ Store Hub is a comprehensive inventory and sales management system designed to s
 
 ## Preview
 
+![Ekran görüntüsü 2025-02-13 165247](https://github.com/user-attachments/assets/27d283f1-b581-4406-a851-4b62efb71861)
 
 ## Installation
 
