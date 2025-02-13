@@ -11,21 +11,20 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DataTableColumnHeader } from "../../components/data-table-group/data-table-column-header";
 
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Payment = {
+export type InventoryType = {
   id: string;
-  amount: number;
-  status: "pending" | "processing" | "success" | "failed";
-  email: string;
+  productName: string;
+  category: string;
+  stockQuantity: number;
+  productDescription: string;
+  actions: string;
 };
 
-export const inventoryDataTableColumns: ColumnDef<Payment>[] = [
+export const inventoryDataTableColumns: ColumnDef<InventoryType>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -49,37 +48,37 @@ export const inventoryDataTableColumns: ColumnDef<Payment>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "status",
+    accessorKey: "productName",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Status" />
+      <DataTableColumnHeader column={column} title="Product Name" />
     ),
   },
   {
-    accessorKey: "email",
+    accessorKey: "category",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Email" />
+      <DataTableColumnHeader column={column} title="Category" />
     ),
   },
   {
-    accessorKey: "amount",
+    accessorKey: "stockQuantity",
     header: ({ column }) => (
-      <DataTableColumnHeader column={column} title="Amount" />
+      <DataTableColumnHeader column={column} title="Stock Quantity" />
     ),
     cell: ({ row }) => {
-      const amount = parseFloat(row.getValue("amount"));
-      const formattedAmount = new Intl.NumberFormat("tr-TR", {
-        style: "currency",
-        currency: "TRY",
-      }).format(amount);
-
-      return <div>{formattedAmount}</div>;
+      const stockQuantity = row.getValue("stockQuantity") as number;
+      return <div>{stockQuantity}</div>;
     },
   },
   {
+    accessorKey: "productDescription",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Product Description" />
+    ),
+  },
+  {
     id: "actions",
-    cell: ({ row }) => {
-      const payment = row.original;
-
+    header: "Actions",
+    cell: () => {
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -90,17 +89,15 @@ export const inventoryDataTableColumns: ColumnDef<Payment>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(payment.id)}
-            >
-              Copy payment ID
-            </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>View customer</DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem>Move to Sale</DropdownMenuItem>
+            <DropdownMenuItem>Delete</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       );
     },
   },
 ];
+
+// ** row.original to access data object
+// ** value: row.getValue("accessorKey")

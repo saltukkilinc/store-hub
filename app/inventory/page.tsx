@@ -1,18 +1,44 @@
 import {
-  Payment,
+  InventoryType,
   inventoryDataTableColumns,
 } from "./inventory-data-table-columns";
 import { DataTableGroup } from "../../components/data-table-group";
 
-async function getData(): Promise<Payment[]> {
-  const randomPayments: Payment[] = Array.from({ length: 15 }, (_, index) => ({
-    id: `728ed${Math.random().toString(36).substring(2, 8)}`,
-    amount: Math.floor(Math.random() * 1000) + 1,
-    status: ["pending", "processing", "success", "failed"][
-      Math.floor(Math.random() * 4)
-    ] as "pending" | "processing" | "success" | "failed",
-    email: `user${index + 1}@example.com`,
-  }));
+async function getData(): Promise<InventoryType[]> {
+  const productNames = [
+    "Laptop",
+    "Smartphone",
+    "Tablet",
+    "Headphones",
+    "Keyboard",
+    "Mouse",
+    "Monitor",
+    "Printer",
+    "Camera",
+    "Speaker",
+  ];
+  const categories = [
+    "Electronics",
+    "Computers",
+    "Accessories",
+    "Home Appliances",
+    "Gadgets",
+  ];
+
+  const randomPayments: InventoryType[] = Array.from(
+    { length: 30 },
+    (_, index) => ({
+      id: `728ed${Math.random().toString(36).substring(2, 8)}`,
+      productName:
+        productNames[Math.floor(Math.random() * productNames.length)],
+      category: categories[Math.floor(Math.random() * categories.length)],
+      stockQuantity: Math.floor(Math.random() * 100) + 1,
+      productDescription: `Description for ${
+        productNames[Math.floor(Math.random() * productNames.length)]
+      }`,
+      actions: "Edit, Delete, Move",
+    })
+  );
 
   return randomPayments;
 }
