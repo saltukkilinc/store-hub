@@ -5,7 +5,7 @@ import { addInventoryItem } from "@/lib/actions/inventory-actions";
 export default function AddInventoryPage() {
   const handleAddInventory = async (values: InventoryFormValues) => {
     "use server";
-    addInventoryItem(values);
+    await addInventoryItem(values);
   };
   return (
     <main className="container mx-auto p-8">

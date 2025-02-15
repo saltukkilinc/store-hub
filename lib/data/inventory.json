@@ -1,9 +1,30 @@
 [
   {
-    "productName": "laptop",
+    "productName": "keyboard",
     "category": "electronics",
-    "stockQuantity": 10,
+    "stockQuantity": 18,
     "productDescription": "This is a laptop description",
     "id": "4628e393-6931-42ad-b4a4-b6efe4c82889"
+  },
+  {
+    "productName": "mouse",
+    "category": "electronics",
+    "stockQuantity": 12,
+    "productDescription": "test",
+    "id": "f2363a3b-ea44-4689-9a48-0a27e2938162"
+  },
+  {
+    "productName": "tablet",
+    "category": "electronics",
+    "stockQuantity": 10,
+    "productDescription": "test desc",
+    "id": "23f69850-e272-4f36-ae18-1e3c1dfce1f6"
+  },
+  {
+    "productName": "laptop",
+    "category": "electronics",
+    "stockQuantity": 2,
+    "productDescription": "this a ded",
+    "id": "347b166f-d444-483b-8912-a03360d4a3d3"
   }
 ]

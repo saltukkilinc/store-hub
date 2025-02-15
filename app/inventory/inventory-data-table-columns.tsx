@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { DataTableColumnHeader } from "../../components/data-table-group/data-table-column-header";
 import { deleteInventoryItem } from "@/lib/actions/inventory-actions";
+import { redirect } from "next/navigation";
 
 export type InventoryType = {
   id: string;
@@ -79,7 +80,7 @@ export const inventoryDataTableColumns: ColumnDef<InventoryType>[] = [
     id: "actions",
     header: "Actions",
     cell: ({ row }) => {
-      console.log(row.original);
+      const id = row.original.id;
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -90,11 +91,11 @@ export const inventoryDataTableColumns: ColumnDef<InventoryType>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => redirect(`/inventory/edit/${id}`)}>
+              Edit
+            </DropdownMenuItem>
             <DropdownMenuItem>Move to Sale</DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={async () => deleteInventoryItem(row.original.id)}
-            >
+            <DropdownMenuItem onClick={async () => deleteInventoryItem(id)}>
               Delete
             </DropdownMenuItem>
           </DropdownMenuContent>

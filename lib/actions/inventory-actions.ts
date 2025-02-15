@@ -7,6 +7,7 @@ import path from "path";
 import { InventoryType } from "@/app/inventory/inventory-data-table-columns";
 import { InventoryFormValues } from "@/app/inventory/inventory-form";
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 
 const filePath = path.join(process.cwd(), "lib", "data", "inventory.json");
 
@@ -19,6 +20,16 @@ export async function getInventory(): Promise<InventoryType[]> {
     return [];
   }
 }
+export async function getInventoryItem(id: string) {
+  try {
+    const inventory = await getInventory();
+    return inventory.find((item) => item.id === id);
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
 export async function addInventoryItem(item: InventoryFormValues) {
   const inventory = await getInventory();
   inventory.push({ ...item, id: uuidv4() });
@@ -30,7 +41,8 @@ export async function updateInventoryItem(item: InventoryType) {
   let inventory = await getInventory();
   inventory = inventory.map((i) => (i.id === item.id ? item : i));
   await fs.writeFile(filePath, JSON.stringify(inventory, null, 2));
-  return inventory;
+  revalidatePath("/inventory");
+  redirect("/inventory");
 }
 
 export async function deleteInventoryItem(id: string) {

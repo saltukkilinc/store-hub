@@ -63,9 +63,7 @@ export default function InventoryForm({
     try {
       submitHandler(values);
       toast(
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        </pre>
+        "Form submitted successfully. You can check the inventory page to see the changes."
       );
     } catch (error) {
       console.error("Form submission error", error);
