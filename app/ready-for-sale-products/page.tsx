@@ -56,7 +56,12 @@ export default async function ReadyForSaleProductsPage() {
   return (
     <main className="container mx-auto p-8">
       <h1>Ready For Sale Products</h1>
-      <DataTableGroup columns={inventoryDataTableColumns} data={data} />
+      <DataTableGroup
+        columns={inventoryDataTableColumns}
+        data={data}
+        filterId="productName"
+        filterPlaceholder="Filter by product name..."
+      />
     </main>
   );
 }

@@ -23,11 +23,15 @@ import DataTable from "./data-table";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  filterId: keyof TData;
+  filterPlaceholder?: string;
 }
 
 export function DataTableGroup<TData, TValue>({
   columns,
   data,
+  filterId,
+  filterPlaceholder,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -60,10 +64,15 @@ export function DataTableGroup<TData, TValue>({
     <div className="space-y-4 mt-4">
       <div className="flex items-center">
         <Input
-          placeholder="Filter emails..."
-          value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
+          placeholder={filterPlaceholder ?? "Filter..."}
+          value={
+            (table.getColumn(filterId as string)?.getFilterValue() as string) ??
+            ""
+          }
           onChange={(event) =>
-            table.getColumn("email")?.setFilterValue(event.target.value)
+            table
+              .getColumn(filterId as string)
+              ?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

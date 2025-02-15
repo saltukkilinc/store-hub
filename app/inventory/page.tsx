@@ -48,7 +48,12 @@ export default async function InventoryManagementPage() {
   return (
     <main className="container mx-auto p-8">
       <h1>Inventory Management</h1>
-      <DataTableGroup columns={inventoryDataTableColumns} data={data} />
+      <DataTableGroup
+        columns={inventoryDataTableColumns}
+        data={data}
+        filterId="productName"
+        filterPlaceholder="Filter by product name..."
+      />
     </main>
   );
 }
