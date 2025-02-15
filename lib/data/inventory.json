@@ -1,0 +1,9 @@
+[
+  {
+    "productName": "laptop",
+    "category": "electronics",
+    "stockQuantity": 10,
+    "productDescription": "This is a laptop description",
+    "id": "4628e393-6931-42ad-b4a4-b6efe4c82889"
+  }
+]
