@@ -6,7 +6,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-
 import {
   Sidebar,
   SidebarContent,
@@ -18,50 +17,28 @@ import {
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubItem,
-  SidebarMenuSubButton,
 } from "@/components/ui/sidebar";
 
-import { Database, Minus, Plus, Store } from "lucide-react";
+import SidebarMenuSubButtonClient from "./sidebar-menu-sub-button-client";
 
-const data = {
-  navMain: [
-    {
-      title: "Inventory",
-      url: "/inventory",
-      // icon: Database,
-      items: [
-        {
-          title: "Add Inventory",
-          url: "/inventory/add",
-          isActive: true,
-        },
-      ],
-    },
-    {
-      title: "Ready For Sale Products",
-      url: "/ready-for-sale-products",
-      // icon: Store,
-      items: [
-        {
-          title: "Add Product",
-          url: "/ready-for-sale-products/add",
-          isActive: false,
-        },
-      ],
-    },
-  ],
-};
+import { Minus, Plus } from "lucide-react";
+import { data } from "./sidebar-data";
 
 export default function AppSidebar() {
   return (
-    <Sidebar collapsible="offcanvas">
+    <Sidebar collapsible="icon">
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton asChild size="lg">
               <Link href={"/inventory"} className="flex items-center gap-2">
-                <Image src="/favicon.ico" alt="logo" width={36} height={36} />
-                <span>Store Hub</span>
+                <Image
+                  src={data.header.logoSrc}
+                  alt="logo"
+                  width={36}
+                  height={36}
+                />
+                <span>{data.header.title}</span>
               </Link>
             </SidebarMenuButton>
           </SidebarMenuItem>
@@ -79,10 +56,8 @@ export default function AppSidebar() {
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
                     <SidebarMenuButton>
-                      <Link href={item.url}>
-                        {/* <item.icon /> */}
-                        <span>{item.title}</span>
-                      </Link>
+                      <item.icon />
+                      {item.title}
                       <Plus className="ml-auto group-data-[state=open]/collapsible:hidden" />
                       <Minus className="ml-auto group-data-[state=closed]/collapsible:hidden" />
                     </SidebarMenuButton>
@@ -92,12 +67,10 @@ export default function AppSidebar() {
                       <SidebarMenuSub>
                         {item.items.map((item) => (
                           <SidebarMenuSubItem key={item.title}>
-                            <SidebarMenuSubButton
-                              asChild
-                              isActive={item.isActive}
-                            >
-                              <a href={item.url}>{item.title}</a>
-                            </SidebarMenuSubButton>
+                            <SidebarMenuSubButtonClient
+                              title={item.title}
+                              url={item.url}
+                            />
                           </SidebarMenuSubItem>
                         ))}
                       </SidebarMenuSub>
