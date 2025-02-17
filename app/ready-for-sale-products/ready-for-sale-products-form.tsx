@@ -32,42 +32,63 @@ const formSchema = z.object({
   category: z
     .string({ required_error: "Category is required." })
     .min(1, "Category is required."),
-  stockQuantity: z.coerce
+  availableQuantity: z.coerce
     .number({
       required_error: "Stock quantity is required.",
       invalid_type_error: "Stock quantity must be an number.",
     })
     .int("Stock quantity must be an integer.")
     .min(0, "Stock quantity must be at least 1."),
+  costPrice: z.coerce
+    .number({
+      required_error: "Cost Price is required.",
+      invalid_type_error: "Cost Price must be an number.",
+    })
+    .min(0, "Cost Price must be at least 0."),
+  expenses: z.coerce
+    .number({
+      required_error: "Expenses is required.",
+      invalid_type_error: "Expenses must be an number.",
+    })
+    .min(0, "Expenses must be at least 0."),
+  profitMarginPercentage: z.coerce
+    .number({
+      required_error: "Profit margin percentage is required.",
+      invalid_type_error: "Profit margin percentage must be an number.",
+    })
+    .min(1, "Profit margin percentage must be at least 1."),
   productDescription: z.string().min(2, "Description is too short."),
 });
 
-export type InventoryFormValues = z.infer<typeof formSchema>;
+export type ReadyForSaleProductsFormValues = z.infer<typeof formSchema>;
 
-type InventoryFormPropsType = {
-  values?: InventoryFormValues;
-  submitHandler: (values: InventoryFormValues) => void;
+type ReadyForSaleProductsFormPropsType = {
+  values?: ReadyForSaleProductsFormValues;
+  submitHandler?: (values: ReadyForSaleProductsFormValues) => void;
 };
 
-export default function InventoryForm({
+export default function ReadyForSaleProductsForm({
   values,
   submitHandler,
-}: InventoryFormPropsType) {
-  const form = useForm<InventoryFormValues>({
+}: ReadyForSaleProductsFormPropsType) {
+  const form = useForm<ReadyForSaleProductsFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: values ?? {
       productName: "",
       category: "",
-      stockQuantity: 0,
+      availableQuantity: 0,
+      costPrice: 0,
+      expenses: 0,
+      profitMarginPercentage: 0,
       productDescription: "",
     },
   });
 
-  function onSubmit(values: InventoryFormValues) {
+  function onSubmit(values: ReadyForSaleProductsFormValues) {
     try {
-      submitHandler(values);
+      submitHandler?.(values);
       toast(
-        "Form submitted successfully. You can check the inventory page to see the changes."
+        "Form submitted successfully. You can check the ready-for-sale products page to see the changes."
       );
     } catch (error) {
       console.error("Form submission error", error);
@@ -79,7 +100,7 @@ export default function InventoryForm({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 max-w-3xl mx-auto py-10"
+        className="max-w-3xl mx-auto py-10 grid grid-cols-1 gap-y-8 gap-x-4 sm:grid-cols-2"
       >
         <FormField
           control={form.control}
@@ -140,7 +161,7 @@ export default function InventoryForm({
 
         <FormField
           control={form.control}
-          name="stockQuantity"
+          name="availableQuantity"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Stock Quantity</FormLabel>
@@ -155,9 +176,56 @@ export default function InventoryForm({
 
         <FormField
           control={form.control}
-          name="productDescription"
+          name="costPrice"
           render={({ field }) => (
             <FormItem>
+              <FormLabel>Cost Price</FormLabel>
+              <FormControl>
+                <Input placeholder="10" type="text" {...field} />
+              </FormControl>
+              <FormDescription>Enter your cost price.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="expenses"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Expenses</FormLabel>
+              <FormControl>
+                <Input placeholder="10" type="text" {...field} />
+              </FormControl>
+              <FormDescription>Enter your expenses.</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="profitMarginPercentage"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Profit Margin Percentage</FormLabel>
+              <FormControl>
+                <Input placeholder="10" type="text" {...field} />
+              </FormControl>
+              <FormDescription>
+                Enter your profit margin percentage.
+              </FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="productDescription"
+          render={({ field }) => (
+            <FormItem className="sm:col-span-2">
               <FormLabel>Product Description</FormLabel>
               <FormControl>
                 <Textarea
@@ -173,7 +241,9 @@ export default function InventoryForm({
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" className="justify-self-start">
+          Submit
+        </Button>
       </form>
     </Form>
   );

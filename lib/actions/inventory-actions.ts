@@ -1,13 +1,13 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { v4 as uuidv4 } from "uuid";
 import fs from "fs/promises";
 import path from "path";
 
 import { InventoryType } from "@/app/inventory/inventory-data-table-columns";
 import { InventoryFormValues } from "@/app/inventory/inventory-form";
-import { revalidatePath } from "next/cache";
-import { redirect } from "next/navigation";
 
 const filePath = path.join(process.cwd(), "lib", "data", "inventory.json");
 

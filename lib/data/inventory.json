@@ -2,7 +2,7 @@
   {
     "productName": "keyboard",
     "category": "electronics",
-    "stockQuantity": 18,
+    "stockQuantity": 19,
     "productDescription": "This is a laptop description",
     "id": "4628e393-6931-42ad-b4a4-b6efe4c82889"
   },
@@ -23,7 +23,7 @@
   {
     "productName": "laptop",
     "category": "electronics",
-    "stockQuantity": 2,
+    "stockQuantity": 0,
     "productDescription": "this a ded",
     "id": "347b166f-d444-483b-8912-a03360d4a3d3"
   }
