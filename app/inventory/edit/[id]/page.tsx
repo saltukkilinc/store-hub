@@ -5,12 +5,12 @@ import {
   updateInventoryItem,
 } from "@/lib/actions/inventory-actions";
 
-type AddInventoryPagePropsType = {
+type EditInventoryPagePropsType = {
   params: Promise<{ id: string }>;
 };
-export default async function AddInventoryPage({
+export default async function EditInventoryPage({
   params,
-}: AddInventoryPagePropsType) {
+}: EditInventoryPagePropsType) {
   const inventoryId = (await params).id;
   const inventoryItem = await getInventoryItem(inventoryId);
   const getInventoryItemWithoutId = () => {

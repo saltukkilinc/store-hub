@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { DataTableColumnHeader } from "../../components/data-table-group/data-table-column-header";
 import { deleteReadyForSaleProductItem } from "@/lib/actions/ready-for-sale-products-actions";
+import { redirect } from "next/navigation";
 
 export type ReadyForSaleProductsType = {
   id: string;
@@ -138,7 +139,11 @@ export const inventoryDataTableColumns: ColumnDef<ReadyForSaleProductsType>[] =
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem>Edit</DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => redirect(`/ready-for-sale-products/edit/${id}`)}
+              >
+                Edit
+              </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => deleteReadyForSaleProductItem(id)}
               >

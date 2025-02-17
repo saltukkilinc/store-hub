@@ -2,7 +2,7 @@
   {
     "productName": "laptop",
     "category": "computers",
-    "availableQuantity": 5,
+    "availableQuantity": 12,
     "costPrice": 30000,
     "expenses": 300,
     "profitMarginPercentage": 25,
