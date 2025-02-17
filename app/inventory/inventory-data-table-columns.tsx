@@ -95,7 +95,7 @@ export const inventoryDataTableColumns: ColumnDef<InventoryType>[] = [
               Edit
             </DropdownMenuItem>
             <DropdownMenuItem>Move to Sale</DropdownMenuItem>
-            <DropdownMenuItem onClick={async () => deleteInventoryItem(id)}>
+            <DropdownMenuItem onClick={() => deleteInventoryItem(id)}>
               Delete
             </DropdownMenuItem>
           </DropdownMenuContent>

@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DataTableColumnHeader } from "../../components/data-table-group/data-table-column-header";
+import { deleteReadyForSaleProductItem } from "@/lib/actions/ready-for-sale-products-actions";
 
 export type ReadyForSaleProductsType = {
   id: string;
@@ -125,7 +126,8 @@ export const inventoryDataTableColumns: ColumnDef<ReadyForSaleProductsType>[] =
     {
       id: "actions",
       header: "Actions",
-      cell: () => {
+      cell: ({ row }) => {
+        const id = row.original.id;
         return (
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -137,7 +139,11 @@ export const inventoryDataTableColumns: ColumnDef<ReadyForSaleProductsType>[] =
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem>Edit</DropdownMenuItem>
-              <DropdownMenuItem>Delete</DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => deleteReadyForSaleProductItem(id)}
+              >
+                Delete
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         );
