@@ -64,7 +64,7 @@ export type ReadyForSaleProductsFormValues = z.infer<typeof formSchema>;
 
 type ReadyForSaleProductsFormPropsType = {
   values?: ReadyForSaleProductsFormValues;
-  submitHandler?: (values: ReadyForSaleProductsFormValues) => void;
+  submitHandler: (values: ReadyForSaleProductsFormValues) => void;
 };
 
 export default function ReadyForSaleProductsForm({
@@ -164,11 +164,11 @@ export default function ReadyForSaleProductsForm({
           name="availableQuantity"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Stock Quantity</FormLabel>
+              <FormLabel>Available Quantity</FormLabel>
               <FormControl>
                 <Input placeholder="10" type="text" {...field} />
               </FormControl>
-              <FormDescription>Enter your stock quantity.</FormDescription>
+              <FormDescription>Enter your available quantity.</FormDescription>
               <FormMessage />
             </FormItem>
           )}

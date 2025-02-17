@@ -1,0 +1,12 @@
+[
+  {
+    "productName": "laptop",
+    "category": "computers",
+    "availableQuantity": 5,
+    "costPrice": 30000,
+    "expenses": 300,
+    "profitMarginPercentage": 25,
+    "productDescription": "This is laptop description",
+    "id": "1584c422-c8bc-477b-ab2f-3d523f75aa53"
+  }
+]
