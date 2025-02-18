@@ -1,11 +1,21 @@
-import { Database, Store } from "lucide-react";
-
+import { Database, Store, LayoutGrid, Shapes } from "lucide-react";
+// ChartNoAxesCombined,
 export const data = {
   header: {
     title: "Store Hub",
     logoSrc: "/favicon.ico",
   },
   navMain: [
+    {
+      title: "Categories",
+      url: "/categories",
+      icon: <LayoutGrid />,
+    },
+    {
+      title: "Products",
+      url: "/products",
+      icon: <Shapes />,
+    },
     {
       title: "Inventory",
       icon: Database,
@@ -25,11 +35,11 @@ export const data = {
       icon: Store,
       items: [
         {
-          title: "View Products",
+          title: "View Store",
           url: "/ready-for-sale-products",
         },
         {
-          title: "Add Product",
+          title: "Add Product into Store",
           url: "/ready-for-sale-products/add",
         },
       ],
