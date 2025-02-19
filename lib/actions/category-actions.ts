@@ -33,6 +33,7 @@ export async function addCategoryItem(item: CategoryFormValues) {
   const data = await getCategories();
   data.push({ ...item, id: uuidv4() });
   await fs.writeFile(filePath, JSON.stringify(data, null, 2));
+  revalidatePath("/categories");
   return data;
 }
 

@@ -19,5 +19,12 @@
     "stockQuantity": 99,
     "productDescription": "test desc",
     "id": "23f69850-e272-4f36-ae18-1e3c1dfce1f6"
+  },
+  {
+    "productName": "keyboard",
+    "category": "computers",
+    "stockQuantity": 111,
+    "productDescription": "gggg",
+    "id": "ec63a3c6-65cf-4fe2-8496-6a3b14929dfe"
   }
 ]
