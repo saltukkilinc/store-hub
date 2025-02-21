@@ -6,9 +6,11 @@ type DialogContextProviderType = {
 };
 type DialogStateType = {
   isDialogOpen: boolean;
+  id: string | null;
 };
 type DialogActionType = {
   type: "OPEN" | "CLOSE";
+  id?: string;
 };
 type DialogContextType = {
   state: DialogStateType;
@@ -36,6 +38,7 @@ function dialogReducer(state: DialogStateType, action: DialogActionType) {
       return {
         ...state,
         isDialogOpen: false,
+        id: action.id ?? null,
       };
   }
 }
@@ -43,6 +46,7 @@ function dialogReducer(state: DialogStateType, action: DialogActionType) {
 const DialogContextProvider = ({ children }: DialogContextProviderType) => {
   const [state, dispatch] = useReducer(dialogReducer, {
     isDialogOpen: false,
+    id: null,
   });
   return <DialogContext value={{ state, dispatch }}>{children}</DialogContext>;
 };

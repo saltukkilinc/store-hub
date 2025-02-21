@@ -66,6 +66,7 @@ const ActionHeader = () => {
 };
 
 const ActionCell = ({ id }: { id: string }) => {
+  const { dispatch } = useDialogContext();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -76,7 +77,9 @@ const ActionCell = ({ id }: { id: string }) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuItem>Edit</DropdownMenuItem>
+        <DropdownMenuItem onClick={() => dispatch({ type: "CLOSE", id })}>
+          Edit
+        </DropdownMenuItem>
         <DropdownMenuItem onClick={async () => await deleteCategoryItem(id)}>
           Delete
         </DropdownMenuItem>
