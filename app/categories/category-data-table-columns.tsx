@@ -13,6 +13,8 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DataTableColumnHeader } from "../../components/data-table-group/data-table-column-header";
+import { useDialogContext } from "@/lib/context/dialog-provider";
+import { deleteCategoryItem } from "@/lib/actions/category-actions";
 
 export type CategoryType = {
   id: string;
@@ -40,28 +42,45 @@ export const categoryDataTableColumns: ColumnDef<CategoryType>[] = [
   },
   {
     id: "actions",
-    header: "Actions",
-    cell: ({}) => {
-      // const id = row.original.id;
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem>Add</DropdownMenuItem>
-            <DropdownMenuItem>Edit</DropdownMenuItem>
-            <DropdownMenuItem>Delete</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
+    header: () => {
+      return <ActionHeader />;
+    },
+    cell: ({ row }) => {
+      const id = row.original.id;
+      return <ActionCell id={id} />;
     },
   },
 ];
 
 // ** row.original to access data object
 // ** value: row.getValue("accessorKey")
+
+const ActionHeader = () => {
+  const { dispatch } = useDialogContext();
+  return (
+    <div className="grid grid-flow-col items-center">
+      <p>Actions</p>
+      <Button onClick={() => dispatch({ type: "OPEN" })}>Add Item</Button>
+    </div>
+  );
+};
+
+const ActionCell = ({ id }: { id: string }) => {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" className="h-8 w-8 p-0">
+          <span className="sr-only">Open menu</span>
+          <MoreHorizontal className="h-4 w-4" />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
+        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+        <DropdownMenuItem>Edit</DropdownMenuItem>
+        <DropdownMenuItem onClick={async () => await deleteCategoryItem(id)}>
+          Delete
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};
