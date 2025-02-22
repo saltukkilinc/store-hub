@@ -77,7 +77,7 @@ const ActionCell = ({ id }: { id: string }) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuItem onClick={() => dispatch({ type: "CLOSE", id })}>
+        <DropdownMenuItem onClick={() => dispatch({ type: "EDIT_ID", id })}>
           Edit
         </DropdownMenuItem>
         <DropdownMenuItem onClick={async () => await deleteCategoryItem(id)}>

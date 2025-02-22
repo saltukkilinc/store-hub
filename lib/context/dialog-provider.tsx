@@ -9,7 +9,7 @@ type DialogStateType = {
   id: string | null;
 };
 type DialogActionType = {
-  type: "OPEN" | "CLOSE";
+  type: "OPEN" | "CLOSE" | "EDIT_ID";
   id?: string;
 };
 type DialogContextType = {
@@ -38,6 +38,11 @@ function dialogReducer(state: DialogStateType, action: DialogActionType) {
       return {
         ...state,
         isDialogOpen: false,
+        id: action.id ?? null,
+      };
+    case "EDIT_ID":
+      return {
+        ...state,
         id: action.id ?? null,
       };
   }
