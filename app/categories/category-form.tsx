@@ -44,13 +44,13 @@ export default function CategoryForm({
       description: "",
     },
   });
-
   function onSubmit(values: CategoryFormValues) {
     try {
       submitHandler(values);
       toast(
         "Form submitted successfully. You can check the categories page to see the changes."
       );
+     form.reset();
     } catch (error) {
       console.error("Form submission error", error);
       toast.error("Failed to submit the form. Please try again.");

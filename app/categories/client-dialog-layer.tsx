@@ -28,7 +28,7 @@ export default function ClientDialogLayer() {
 
   const handleEditCategory = async (values: CategoryFormValues) => {
     await updateCategoryItem({ ...values, id: state.id as string });
-    dispatch({type:"CLOSE"})
+    dispatch({ type: "CLOSE" });
   };
   useEffect(() => {
     (async () => {
@@ -39,7 +39,7 @@ export default function ClientDialogLayer() {
   }, [state.id, dispatch]);
 
   return (
-    <CustomDialog title={`${IS_EDIT ? "Add" : "Edit"} Category`}>
+    <CustomDialog title={`${IS_EDIT ? "Edit" : "Add"} Category`}>
       <CategoryForm
         submitHandler={IS_EDIT ? handleEditCategory : handleAddCategory}
         values={item}
