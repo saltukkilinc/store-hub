@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { DataTableColumnHeader } from "../../components/data-table-group/data-table-column-header";
 import { deleteProductItem } from "@/lib/actions/product-actions";
+import Link from "next/link";
 
 export type ProductType = {
   id: string;
@@ -55,7 +56,9 @@ const ActionHeader = () => {
   return (
     <div className="grid grid-flow-col items-center">
       <p>Actions</p>
-      <Button onClick={() => console.log("Open")}>Add Item</Button>
+      <Button onClick={() => console.log("Open")} asChild>
+        <Link href="/products/?dialog=open">Add New</Link>
+      </Button>
     </div>
   );
 };
@@ -71,8 +74,8 @@ const ActionCell = ({ id }: { id: string }) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuItem onClick={() => console.log("EDIT")}>
-          Edit
+        <DropdownMenuItem onClick={() => console.log("EDIT")} asChild>
+          <Link href={`/products/?dialog=open&id=${id}`}>Edit</Link>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={async () => await deleteProductItem(id)}>
           Delete

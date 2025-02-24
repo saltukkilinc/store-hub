@@ -50,7 +50,10 @@ export default function ProductForm({
       toast(
         "Form submitted successfully. You can check the products page to see the changes."
       );
-      form.reset();
+      form.reset({
+        productName: "",
+        description: "",
+      });
     } catch (error) {
       console.error("Form submission error", error);
       toast.error("Failed to submit the form. Please try again.");
