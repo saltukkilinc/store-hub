@@ -1,6 +1,12 @@
 import { DataTableGroup } from "@/components/data-table-group";
 import React from "react";
 import { productDataTableColumns } from "./product-data-table-column";
+import ProductForm, { ProductFormValues } from "./product-form";
+
+const handleAddProduct = async (values: ProductFormValues) => {
+  "use server";
+  console.log(values);
+};
 
 export default function ProductsPage() {
   return (
@@ -15,6 +21,7 @@ export default function ProductsPage() {
         filterId="productName"
         filterPlaceholder="Filter by product name..."
       />
+      <ProductForm submitHandler={handleAddProduct} />
     </main>
   );
 }
