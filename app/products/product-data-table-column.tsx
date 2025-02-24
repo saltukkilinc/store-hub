@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { DataTableColumnHeader } from "../../components/data-table-group/data-table-column-header";
+import { deleteProductItem } from "@/lib/actions/product-actions";
 
 export type ProductType = {
   id: string;
@@ -43,10 +44,9 @@ export const productDataTableColumns: ColumnDef<ProductType>[] = [
     header: () => {
       return <ActionHeader />;
     },
-    cell: () => {
-      // { row }
-      // const id = row.original.id;
-      return <ActionCell />;
+    cell: ({ row }) => {
+      const id = row.original.id;
+      return <ActionCell id={id} />;
     },
   },
 ];
@@ -60,8 +60,7 @@ const ActionHeader = () => {
   );
 };
 
-const ActionCell = () => {
-  // { id }: { id: string }
+const ActionCell = ({ id }: { id: string }) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -75,7 +74,7 @@ const ActionCell = () => {
         <DropdownMenuItem onClick={() => console.log("EDIT")}>
           Edit
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => console.log("DELETE")}>
+        <DropdownMenuItem onClick={async () => await deleteProductItem(id)}>
           Delete
         </DropdownMenuItem>
       </DropdownMenuContent>
