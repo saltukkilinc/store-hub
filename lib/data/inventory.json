@@ -26,5 +26,26 @@
     "stockQuantity": 111,
     "productDescription": "gggg",
     "id": "ec63a3c6-65cf-4fe2-8496-6a3b14929dfe"
+  },
+  {
+    "productName": "keyboard",
+    "category": "homeAppliances",
+    "stockQuantity": 1,
+    "productDescription": "12",
+    "id": "ac4b0e21-f33c-40c9-80e2-44f50b45e091"
+  },
+  {
+    "productName": "Product 2",
+    "category": "Computer",
+    "stockQuantity": 0,
+    "productDescription": "sa",
+    "id": "7880d15c-84ae-4e2e-9c25-9cc23cf89812"
+  },
+  {
+    "productName": "Product 2",
+    "category": "Computer",
+    "stockQuantity": 1111,
+    "productDescription": "111",
+    "id": "4065027f-de0e-4c23-ae2c-47258ea68f7c"
   }
 ]

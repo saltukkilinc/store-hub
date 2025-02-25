@@ -4,6 +4,8 @@ import {
   getInventoryItem,
   updateInventoryItem,
 } from "@/lib/actions/inventory-actions";
+import { getProducts } from "@/lib/actions/product-actions";
+import { getCategories } from "@/lib/actions/category-actions";
 
 type EditInventoryPagePropsType = {
   params: Promise<{ id: string }>;
@@ -20,6 +22,13 @@ export default async function EditInventoryPage({
     return inventoryItemWithoutId;
   };
 
+  const productsData = getProducts();
+  const categoriesData = getCategories();
+  const [products, categories] = await Promise.all([
+    productsData,
+    categoriesData,
+  ]);
+
   const handleEditInventory = async (values: InventoryFormValues) => {
     "use server";
     await updateInventoryItem({ ...values, id: inventoryId });
@@ -30,6 +39,8 @@ export default async function EditInventoryPage({
       <InventoryForm
         submitHandler={handleEditInventory}
         values={getInventoryItemWithoutId()}
+        products={products}
+        categories={categories}
       />
     </main>
   );
