@@ -1,17 +1,27 @@
 [
   {
     "category": "Electronics",
-    "description": "This is electronics desc.",
-    "id": "80d47443-853b-4b80-ba30-90b20195d639"
+    "description": "Electronics desc...",
+    "id": "2207cfc4-0920-400b-877e-53837399fb67"
   },
   {
-    "category": "Computer",
-    "description": "This is computer category description",
-    "id": "abe13f96-1c01-470b-891c-a77c85d8aed0"
+    "category": "Computers",
+    "description": "Computers desc...",
+    "id": "1e6f2a89-382e-4397-9384-f553489321e3"
   },
   {
-    "category": "sdsa",
-    "description": "dsadsa",
-    "id": "2623f6bb-af1c-4cee-b07e-53a1704085df"
+    "category": "Accessories",
+    "description": "Accessories desc...",
+    "id": "bbb8c79f-655d-41bb-ba62-74e971c9b032"
+  },
+  {
+    "category": "Home Appliances",
+    "description": "Home Appliances desc...",
+    "id": "8aa2a023-d137-4312-b623-b8fd25420bbc"
+  },
+  {
+    "category": "Gadgets",
+    "description": "Gadgets desc...",
+    "id": "4c8c92b3-2ba6-4f2f-ae3d-9667aceea5ed"
   }
 ]

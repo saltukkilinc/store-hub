@@ -1,12 +1,42 @@
 [
   {
-    "productName": "laptop",
-    "category": "computers",
-    "availableQuantity": 12,
+    "productName": "Laptop",
+    "category": "Electronics",
+    "availableQuantity": 3,
     "costPrice": 30000,
-    "expenses": 300,
+    "expenses": 500,
     "profitMarginPercentage": 25,
-    "productDescription": "This is laptop description",
-    "id": "1584c422-c8bc-477b-ab2f-3d523f75aa53"
+    "productDescription": "Laptop desc...",
+    "id": "39937941-b3e2-4d73-bd16-cb5cb6658f75"
+  },
+  {
+    "productName": "Smartphone",
+    "category": "Electronics",
+    "availableQuantity": 4,
+    "costPrice": 20000,
+    "expenses": 300,
+    "profitMarginPercentage": 35,
+    "productDescription": "Smartphone description...",
+    "id": "ef5e593e-ac8d-4793-940b-13881d287f05"
+  },
+  {
+    "productName": "Mouse",
+    "category": "Accessories",
+    "availableQuantity": 10,
+    "costPrice": 2000,
+    "expenses": 100,
+    "profitMarginPercentage": 30,
+    "productDescription": "Mouse description",
+    "id": "e5dccccb-795a-41e8-953d-b126f230db73"
+  },
+  {
+    "productName": "Tablet",
+    "category": "Electronics",
+    "availableQuantity": 10,
+    "costPrice": 10000,
+    "expenses": 200,
+    "profitMarginPercentage": 25,
+    "productDescription": "Tablet desc...\n",
+    "id": "bd5773fc-1d24-46e4-8a35-61cdcc195054"
   }
 ]

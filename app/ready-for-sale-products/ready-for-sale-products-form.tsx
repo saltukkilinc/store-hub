@@ -74,6 +74,16 @@ type ReadyForSaleProductsFormPropsType = {
   categories: CategoryType[];
 };
 
+const DEFAULT_FORM = {
+  productName: "",
+  category: "",
+  availableQuantity: 0,
+  costPrice: 0,
+  expenses: 0,
+  profitMarginPercentage: 0,
+  productDescription: "",
+};
+
 export default function ReadyForSaleProductsForm({
   values,
   submitHandler,
@@ -83,15 +93,7 @@ export default function ReadyForSaleProductsForm({
   const { dispatch } = useDialogContext();
   const form = useForm<ReadyForSaleProductsFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: values ?? {
-      productName: "",
-      category: "",
-      availableQuantity: 0,
-      costPrice: 0,
-      expenses: 0,
-      profitMarginPercentage: 0,
-      productDescription: "",
-    },
+    defaultValues: values ?? DEFAULT_FORM,
   });
 
   function onSubmit(values: ReadyForSaleProductsFormValues) {
@@ -100,6 +102,7 @@ export default function ReadyForSaleProductsForm({
       toast(
         "Form submitted successfully. You can check the ready-for-sale products page to see the changes."
       );
+      form.reset(DEFAULT_FORM);
     } catch (error) {
       console.error("Form submission error", error);
       toast.error("Failed to submit the form. Please try again.");
@@ -118,7 +121,7 @@ export default function ReadyForSaleProductsForm({
           render={({ field }) => (
             <FormItem>
               <FormLabel>Product Name</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Product name..." />
@@ -156,7 +159,7 @@ export default function ReadyForSaleProductsForm({
           render={({ field }) => (
             <FormItem>
               <FormLabel>Category</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Category..." />

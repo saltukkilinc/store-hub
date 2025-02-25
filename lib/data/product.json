@@ -1,12 +1,52 @@
 [
   {
-    "productName": "Product 1",
-    "description": "Product 1 desc...",
-    "id": "f3c33d75-1378-4ad4-af23-98d7137f6f77"
+    "productName": "Laptop",
+    "description": "Laptop desc...",
+    "id": "da6ca102-4e3f-4cbf-b64d-fb9693788eb4"
   },
   {
-    "productName": "Product 2",
-    "description": "This is product 2 desc...",
-    "id": "79d34302-b5d7-4d91-ada0-f3e99a767894"
+    "productName": "Smartphone",
+    "description": "Smartphone desc...",
+    "id": "e0ba0d94-f04f-4f5d-a793-6ca39550861e"
+  },
+  {
+    "productName": "Tablet",
+    "description": "Tablet desc...",
+    "id": "54c69af9-89c4-4608-8ca9-f87d2b556652"
+  },
+  {
+    "productName": "Headphones",
+    "description": "Headphones desc...",
+    "id": "d246f4a1-3b38-4ba3-87a1-b0b5b01327ea"
+  },
+  {
+    "productName": "Keyboard",
+    "description": "Keyboard desc...",
+    "id": "4bfb1e3f-7237-4ac0-995e-68b33e1ae8e4"
+  },
+  {
+    "productName": "Mouse",
+    "description": "Mouse desc...",
+    "id": "6c39a3b6-606d-456f-aa5f-48e6232b5e5d"
+  },
+  {
+    "productName": "Monitor",
+    "description": "Monitor desc...",
+    "id": "78f36392-c8e8-454c-977d-9651439aad44"
+  },
+  {
+    "productName": "Printer",
+    "description": "Printer desc...",
+    "id": "f05a6aee-1946-4092-8e39-f55d97d5e5a5"
+  },
+  {
+    "productName": "Camera",
+    "description": "Camera desc...",
+    "id": "b3ac7d6e-1b0a-4914-84de-6274c85ab995"
+  },
+  {
+    "productName": "Speaker",
+    "description": "Speaker desc...",
+    "id": "ee5c4410-3578-470c-b734-5a611e2b2f91"
   }
 ]

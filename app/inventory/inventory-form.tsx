@@ -56,6 +56,13 @@ type InventoryFormPropsType = {
   categories: CategoryType[];
 };
 
+const FORM_DEFAULT = {
+  productName: "",
+  category: "",
+  stockQuantity: 0,
+  productDescription: "",
+};
+
 export default function InventoryForm({
   values,
   submitHandler,
@@ -66,12 +73,7 @@ export default function InventoryForm({
 
   const form = useForm<InventoryFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: values ?? {
-      productName: "",
-      category: "",
-      stockQuantity: 0,
-      productDescription: "",
-    },
+    defaultValues: values ?? FORM_DEFAULT,
   });
 
   function onSubmit(values: InventoryFormValues) {
@@ -80,6 +82,7 @@ export default function InventoryForm({
       toast(
         "Form submitted successfully. You can check the inventory page to see the changes."
       );
+      form.reset(FORM_DEFAULT);
     } catch (error) {
       console.error("Form submission error", error);
       toast.error("Failed to submit the form. Please try again.");
@@ -98,7 +101,7 @@ export default function InventoryForm({
           render={({ field }) => (
             <FormItem>
               <FormLabel>Product Name</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Product name..." />
@@ -136,7 +139,7 @@ export default function InventoryForm({
           render={({ field }) => (
             <FormItem>
               <FormLabel>Category</FormLabel>
-              <Select onValueChange={field.onChange} defaultValue={field.value}>
+              <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
                   <SelectTrigger>
                     <SelectValue placeholder="Category..." />

@@ -1,51 +1,37 @@
 [
   {
-    "productName": "keyboard",
-    "category": "electronics",
-    "stockQuantity": 19,
-    "productDescription": "This is a laptop description",
-    "id": "4628e393-6931-42ad-b4a4-b6efe4c82889"
+    "productName": "Laptop",
+    "category": "Computers",
+    "stockQuantity": 5,
+    "productDescription": "Laptop desc...",
+    "id": "0c3eab4c-daf8-4cd0-a0c0-35b9fd275d85"
   },
   {
-    "productName": "mouse",
-    "category": "electronics",
-    "stockQuantity": 12,
-    "productDescription": "test",
-    "id": "f2363a3b-ea44-4689-9a48-0a27e2938162"
+    "productName": "Smartphone",
+    "category": "Electronics",
+    "stockQuantity": 8,
+    "productDescription": "Smartphone desc...",
+    "id": "49b657f9-8ab4-42f7-be01-4a2693a7e47a"
   },
   {
-    "productName": "tablet",
-    "category": "electronics",
-    "stockQuantity": 99,
-    "productDescription": "test desc",
-    "id": "23f69850-e272-4f36-ae18-1e3c1dfce1f6"
+    "productName": "Tablet",
+    "category": "Electronics",
+    "stockQuantity": 10,
+    "productDescription": "Tablet desc...",
+    "id": "27bb8d9e-de3f-46c6-8322-db188f254a33"
   },
   {
-    "productName": "keyboard",
-    "category": "computers",
-    "stockQuantity": 111,
-    "productDescription": "gggg",
-    "id": "ec63a3c6-65cf-4fe2-8496-6a3b14929dfe"
+    "productName": "Keyboard",
+    "category": "Accessories",
+    "stockQuantity": 20,
+    "productDescription": "Keyboard description...",
+    "id": "bff30f4c-86b4-425c-9778-41fd8d4fe57f"
   },
   {
-    "productName": "keyboard",
-    "category": "homeAppliances",
-    "stockQuantity": 1,
-    "productDescription": "12",
-    "id": "ac4b0e21-f33c-40c9-80e2-44f50b45e091"
-  },
-  {
-    "productName": "Product 2",
-    "category": "Computer",
-    "stockQuantity": 0,
-    "productDescription": "sa",
-    "id": "7880d15c-84ae-4e2e-9c25-9cc23cf89812"
-  },
-  {
-    "productName": "Product 2",
-    "category": "Computer",
-    "stockQuantity": 1111,
-    "productDescription": "111",
-    "id": "4065027f-de0e-4c23-ae2c-47258ea68f7c"
+    "productName": "Mouse",
+    "category": "Accessories",
+    "stockQuantity": 30,
+    "productDescription": "Mouse description...",
+    "id": "b3da2882-61ef-4333-b005-91b94ac6e690"
   }
 ]
