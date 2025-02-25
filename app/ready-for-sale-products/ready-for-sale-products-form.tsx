@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   Form,
   FormControl,
@@ -24,6 +24,11 @@ import {
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { ProductType } from "../products/product-data-table-column";
+import { CategoryType } from "../categories/category-data-table-columns";
+import Link from "next/link";
+import { Plus } from "lucide-react";
+import { useDialogContext } from "@/lib/context/dialog-provider";
 
 const formSchema = z.object({
   productName: z
@@ -65,12 +70,17 @@ export type ReadyForSaleProductsFormValues = z.infer<typeof formSchema>;
 type ReadyForSaleProductsFormPropsType = {
   values?: ReadyForSaleProductsFormValues;
   submitHandler: (values: ReadyForSaleProductsFormValues) => void;
+  products: ProductType[];
+  categories: CategoryType[];
 };
 
 export default function ReadyForSaleProductsForm({
   values,
   submitHandler,
+  products,
+  categories,
 }: ReadyForSaleProductsFormPropsType) {
+  const { dispatch } = useDialogContext();
   const form = useForm<ReadyForSaleProductsFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: values ?? {
@@ -115,11 +125,21 @@ export default function ReadyForSaleProductsForm({
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="headphones">Headphones</SelectItem>
-                  <SelectItem value="laptop">Laptop</SelectItem>
-                  <SelectItem value="keyboard">Keyboard</SelectItem>
-                  <SelectItem value="mouse">Mouse</SelectItem>
-                  <SelectItem value="tablet">Tablet</SelectItem>
+                  {products?.length > 0 ? (
+                    products.map(({ id, productName }) => (
+                      <SelectItem key={id} value={productName}>
+                        {productName}
+                      </SelectItem>
+                    ))
+                  ) : (
+                    <Link
+                      href="/products?dialog=open"
+                      className={buttonVariants({ variant: "link" })}
+                    >
+                      <Plus className="w-4 h-4" />
+                      Please click here to add a product.
+                    </Link>
+                  )}
                 </SelectContent>
               </Select>
               <FormDescription>
@@ -143,12 +163,22 @@ export default function ReadyForSaleProductsForm({
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
-                  <SelectItem value="computers">Computers</SelectItem>
-                  <SelectItem value="electronics">Electronics</SelectItem>
-                  <SelectItem value="homeAppliances">
-                    Home Appliances
-                  </SelectItem>
-                  <SelectItem value="gadgets">Gadgets</SelectItem>
+                  {categories?.length > 0 ? (
+                    categories?.map((category) => (
+                      <SelectItem key={category.id} value={category.category}>
+                        {category.category}
+                      </SelectItem>
+                    ))
+                  ) : (
+                    <Link
+                      href="/categories"
+                      className={buttonVariants({ variant: "link" })}
+                      onClick={() => dispatch({ type: "OPEN" })}
+                    >
+                      <Plus className="w-4 h-4" />
+                      Please click here to add a category.
+                    </Link>
+                  )}
                 </SelectContent>
               </Select>
               <FormDescription>

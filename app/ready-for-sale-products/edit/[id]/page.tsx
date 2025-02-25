@@ -5,6 +5,8 @@ import {
 import ReadyForSaleProductsForm, {
   ReadyForSaleProductsFormValues,
 } from "../../ready-for-sale-products-form";
+import { getProducts } from "@/lib/actions/product-actions";
+import { getCategories } from "@/lib/actions/category-actions";
 
 type EditReadyForSaleProductsPagePropsType = {
   params: Promise<{ id: string }>;
@@ -21,6 +23,13 @@ export default async function EditReadyForSaleProductsPage({
     return productItemWithoutId;
   };
 
+  const productsData = getProducts();
+  const categoriesData = getCategories();
+  const [products, categories] = await Promise.all([
+    productsData,
+    categoriesData,
+  ]);
+
   const handleEditProducts = async (values: ReadyForSaleProductsFormValues) => {
     "use server";
     await updateReadyForSaleProductItem({ ...values, id: productId });
@@ -31,6 +40,8 @@ export default async function EditReadyForSaleProductsPage({
       <ReadyForSaleProductsForm
         submitHandler={handleEditProducts}
         values={getProductItemWithoutId()}
+        products={products}
+        categories={categories}
       />
     </main>
   );

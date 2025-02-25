@@ -1,18 +1,24 @@
-import React from "react";
-import ReadyForSaleProductsForm, {
-  ReadyForSaleProductsFormValues,
-} from "../ready-for-sale-products-form";
+import ReadyForSaleProductsForm from "../ready-for-sale-products-form";
 import { addReadyForSaleProductItem } from "@/lib/actions/ready-for-sale-products-actions";
+import { getProducts } from "@/lib/actions/product-actions";
+import { getCategories } from "@/lib/actions/category-actions";
 
-export default function AddProductPage() {
-  const handleAddInventory = async (values: ReadyForSaleProductsFormValues) => {
-    "use server";
-    await addReadyForSaleProductItem(values);
-  };
+export default async function AddProductPage() {
+  const productsData = getProducts();
+  const categoriesData = getCategories();
+  const [products, categories] = await Promise.all([
+    productsData,
+    categoriesData,
+  ]);
+
   return (
     <main className="container mx-auto p-8">
       <h1 className="text-center">Add Product Form</h1>
-      <ReadyForSaleProductsForm submitHandler={handleAddInventory} />
+      <ReadyForSaleProductsForm
+        submitHandler={addReadyForSaleProductItem}
+        products={products}
+        categories={categories}
+      />
     </main>
   );
 }
