@@ -2,14 +2,15 @@
 
 import CustomDialog from "@/components/custom-dialog";
 import { Button } from "@/components/ui/button";
-import { deleteSelectedInventoryItems } from "@/lib/actions/inventory-actions";
+import { deleteSelectedReadyForSaleProductItems } from "@/lib/actions/ready-for-sale-products-actions";
+
 import { useDialogContext } from "@/lib/context/dialog-provider";
 
 export default function ClientDialogLayer() {
   const { dispatch, state } = useDialogContext();
 
   const handleDelete = () => {
-    deleteSelectedInventoryItems(state.selectedIds);
+    deleteSelectedReadyForSaleProductItems(state.selectedIds);
     dispatch({ type: "CLOSE" });
   };
   const handleCancel = () => {

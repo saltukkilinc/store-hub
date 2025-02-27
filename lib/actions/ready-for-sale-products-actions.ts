@@ -63,3 +63,11 @@ export async function deleteReadyForSaleProductItem(id: string) {
   revalidatePath("/ready-for-sale-products");
   return inventory;
 }
+
+export async function deleteSelectedReadyForSaleProductItems(ids: string[]) {
+  let inventory = await getReadyForSaleProducts();
+  inventory = inventory.filter((item) => !ids.includes(item.id));
+  await fs.writeFile(filePath, JSON.stringify(inventory, null, 2));
+  revalidatePath("/ready-for-sale-products");
+  return inventory;
+}

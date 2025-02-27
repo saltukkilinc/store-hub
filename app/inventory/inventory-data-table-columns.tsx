@@ -1,10 +1,9 @@
 "use client";
 
-import { ColumnDef, Row, Table } from "@tanstack/react-table";
+import { ColumnDef } from "@tanstack/react-table";
 
 import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 
 import {
   DropdownMenu,
@@ -16,8 +15,7 @@ import {
 import { DataTableColumnHeader } from "../../components/data-table-group/data-table-column-header";
 import { deleteInventoryItem } from "@/lib/actions/inventory-actions";
 import { redirect } from "next/navigation";
-import { toast } from "sonner";
-import { useDialogContext } from "@/lib/context/dialog-provider";
+import SelectCheckbox from "@/components/data-table-group/data-table-select-checbox";
 
 export type InventoryType = {
   id: string;
@@ -25,12 +23,6 @@ export type InventoryType = {
   category: string;
   stockQuantity: number;
   productDescription: string;
-};
-
-type SelectCheckboxPropsType = {
-  table: Table<InventoryType>;
-  row?: Row<InventoryType>;
-  type?: "header" | "cell";
 };
 
 export const inventoryDataTableColumns: ColumnDef<InventoryType>[] = [
@@ -97,48 +89,3 @@ export const inventoryDataTableColumns: ColumnDef<InventoryType>[] = [
     },
   },
 ];
-
-const SelectCheckbox = ({
-  row,
-  table,
-  type = "cell",
-}: SelectCheckboxPropsType) => {
-  const { dispatch } = useDialogContext();
-  return (
-    <Checkbox
-      checked={
-        type === "cell"
-          ? (row as Row<InventoryType>).getIsSelected()
-          : table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && "indeterminate")
-      }
-      onCheckedChange={(value) => {
-        if (type === "cell") {
-          (row as Row<InventoryType>).toggleSelected(!!value);
-        }
-        if (type === "header") {
-          table.toggleAllPageRowsSelected(!!value);
-        }
-        if (value) {
-          toast("Inventory Item Selected", {
-            description: "Do you want to delete selected items?",
-            position: "top-right",
-            action: {
-              label: "YES",
-              onClick: () => {
-                dispatch({
-                  type: "OPEN",
-                  selectedIds: table
-                    .getSelectedRowModel()
-                    .rows.map((row) => row.original.id),
-                });
-                table.toggleAllPageRowsSelected(false);
-              },
-            },
-          });
-        }
-      }}
-      aria-label={type === "cell" ? "Select row" : "Select all"}
-    />
-  );
-};

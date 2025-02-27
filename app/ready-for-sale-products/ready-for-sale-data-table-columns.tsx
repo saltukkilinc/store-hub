@@ -4,7 +4,6 @@ import { ColumnDef } from "@tanstack/react-table";
 
 import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 
 import {
   DropdownMenu,
@@ -16,6 +15,7 @@ import {
 import { DataTableColumnHeader } from "../../components/data-table-group/data-table-column-header";
 import { deleteReadyForSaleProductItem } from "@/lib/actions/ready-for-sale-products-actions";
 import { redirect } from "next/navigation";
+import SelectCheckbox from "@/components/data-table-group/data-table-select-checbox";
 
 export type ReadyForSaleProductsType = {
   id: string;
@@ -32,23 +32,8 @@ export const inventoryDataTableColumns: ColumnDef<ReadyForSaleProductsType>[] =
   [
     {
       id: "select",
-      header: ({ table }) => (
-        <Checkbox
-          checked={
-            table.getIsAllPageRowsSelected() ||
-            (table.getIsSomePageRowsSelected() && "indeterminate")
-          }
-          onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-          aria-label="Select all"
-        />
-      ),
-      cell: ({ row }) => (
-        <Checkbox
-          checked={row.getIsSelected()}
-          onCheckedChange={(value) => row.toggleSelected(!!value)}
-          aria-label="Select row"
-        />
-      ),
+      header: ({ table }) => <SelectCheckbox table={table} type="header" />,
+      cell: ({ row, table }) => <SelectCheckbox row={row} table={table} />,
       enableSorting: false,
       enableHiding: false,
     },
