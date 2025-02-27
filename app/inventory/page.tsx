@@ -1,6 +1,7 @@
 import { inventoryDataTableColumns } from "./inventory-data-table-columns";
 import { DataTableGroup } from "../../components/data-table-group";
 import { getInventory } from "@/lib/actions/inventory-actions";
+import ClientDialogLayer from "./client-dialog-layer";
 
 export default async function InventoryManagementPage() {
   const data = await getInventory();
@@ -13,6 +14,7 @@ export default async function InventoryManagementPage() {
         filterId="productName"
         filterPlaceholder="Filter by product name..."
       />
+      <ClientDialogLayer />
     </main>
   );
 }

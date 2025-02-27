@@ -52,3 +52,11 @@ export async function deleteInventoryItem(id: string) {
   revalidatePath("/inventory");
   return inventory;
 }
+
+export async function deleteSelectedInventoryItems(ids: string[]) {
+  let inventory = await getInventory();
+  inventory = inventory.filter((item) => !ids.includes(item.id));
+  await fs.writeFile(filePath, JSON.stringify(inventory, null, 2));
+  revalidatePath("/inventory");
+  return inventory;
+}
