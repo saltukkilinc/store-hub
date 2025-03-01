@@ -1,20 +1,11 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-
-import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { DataTableColumnHeader } from "../../components/data-table-group/data-table-column-header";
 import { useDialogContext } from "@/lib/context/dialog-provider";
 import { deleteCategoryItem } from "@/lib/actions/category-actions";
+import DataTableActionDropdown from "@/components/data-table-group/data-table-action-dropdown";
 
 export type CategoryType = {
   id: string;
@@ -52,9 +43,6 @@ export const categoryDataTableColumns: ColumnDef<CategoryType>[] = [
   },
 ];
 
-// ** row.original to access data object
-// ** value: row.getValue("accessorKey")
-
 const ActionHeader = () => {
   const { dispatch } = useDialogContext();
   return (
@@ -67,23 +55,12 @@ const ActionHeader = () => {
 
 const ActionCell = ({ id }: { id: string }) => {
   const { dispatch } = useDialogContext();
+  const editHandler = () => dispatch({ type: "EDIT_ID", id });
+  const deleteHandler = async () => await deleteCategoryItem(id);
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="h-8 w-8 p-0">
-          <span className="sr-only">Open menu</span>
-          <MoreHorizontal className="h-4 w-4" />
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuItem onClick={() => dispatch({ type: "EDIT_ID", id })}>
-          Edit
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={async () => await deleteCategoryItem(id)}>
-          Delete
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <DataTableActionDropdown
+      onDeleteClick={deleteHandler}
+      onEditClick={editHandler}
+    />
   );
 };

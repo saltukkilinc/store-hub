@@ -1,21 +1,11 @@
 "use client";
 
+import { redirect } from "next/navigation";
 import { ColumnDef } from "@tanstack/react-table";
-
-import { MoreHorizontal } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import { DataTableColumnHeader } from "../../components/data-table-group/data-table-column-header";
 import { deleteReadyForSaleProductItem } from "@/lib/actions/ready-for-sale-products-actions";
-import { redirect } from "next/navigation";
 import SelectCheckbox from "@/components/data-table-group/data-table-select-checbox";
+import DataTableActionDropdown from "@/components/data-table-group/data-table-action-dropdown";
 
 export type ReadyForSaleProductsType = {
   id: string;
@@ -114,28 +104,14 @@ export const inventoryDataTableColumns: ColumnDef<ReadyForSaleProductsType>[] =
       header: "Actions",
       cell: ({ row }) => {
         const id = row.original.id;
+        const deleteHandler = () => deleteReadyForSaleProductItem(id);
+        const editHandler = () =>
+          redirect(`/ready-for-sale-products/edit/${id}`);
         return (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
-                <span className="sr-only">Open menu</span>
-                <MoreHorizontal className="h-4 w-4" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
-              <DropdownMenuItem
-                onClick={() => redirect(`/ready-for-sale-products/edit/${id}`)}
-              >
-                Edit
-              </DropdownMenuItem>
-              <DropdownMenuItem
-                onClick={() => deleteReadyForSaleProductItem(id)}
-              >
-                Delete
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <DataTableActionDropdown
+            onDeleteClick={deleteHandler}
+            onEditClick={editHandler}
+          />
         );
       },
     },

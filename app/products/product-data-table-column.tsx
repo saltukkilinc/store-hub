@@ -56,7 +56,7 @@ const ActionHeader = () => {
   return (
     <div className="grid grid-flow-col items-center">
       <p>Actions</p>
-      <Button onClick={() => console.log("Open")} asChild>
+      <Button asChild>
         <Link href="/products/?dialog=open">Add New</Link>
       </Button>
     </div>
@@ -74,7 +74,7 @@ const ActionCell = ({ id }: { id: string }) => {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
-        <DropdownMenuItem onClick={() => console.log("EDIT")} asChild>
+        <DropdownMenuItem asChild>
           <Link href={`/products/?dialog=open&id=${id}`}>Edit</Link>
         </DropdownMenuItem>
         <DropdownMenuItem onClick={async () => await deleteProductItem(id)}>
