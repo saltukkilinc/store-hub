@@ -3,6 +3,7 @@ import { Row, Table } from "@tanstack/react-table";
 
 import { Checkbox } from "@/components/ui/checkbox";
 import { useDialogContext } from "@/lib/context/dialog-provider";
+import { Button } from "../ui/button";
 
 type SelectCheckboxPropsType<TData extends { id: string }> = {
   table: Table<TData>;
@@ -31,12 +32,15 @@ export default function SelectCheckbox<TData extends { id: string }>({
         if (type === "header") {
           table.toggleAllPageRowsSelected(!!value);
         }
+        if (toast.getToasts().length > 0) {
+          toast.dismiss(toast.getToasts()[0].id);
+        }
         if (value) {
-          toast("Inventory Item Selected", {
+          toast.info("Inventory Item Selected", {
             description: "Do you want to delete selected items?",
-            position: "top-right",
+            position: "top-center",
             action: {
-              label: "YES",
+              label: <Button size="sm">YES</Button>,
               onClick: () => {
                 dispatch({
                   type: "OPEN",
