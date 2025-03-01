@@ -55,6 +55,7 @@ export default function SelectCheckbox<TData extends { id: string }>({
         }
       }}
       aria-label={type === "cell" ? "Select row" : "Select all"}
+      className="mb-2.5"
     />
   );
 }
