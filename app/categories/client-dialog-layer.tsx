@@ -1,17 +1,15 @@
 "use client";
-import CustomDialog from "@/components/custom-dialog";
 import React, { useEffect, useState } from "react";
+import { useDialogContext } from "@/lib/context/dialog-provider";
+
+import CustomDialog from "@/components/custom-dialog";
 import CategoryForm, { CategoryFormValues } from "./category-form";
 import {
   addCategoryItem,
   getCategoryItem,
   updateCategoryItem,
 } from "@/lib/actions/category-actions";
-import { useDialogContext } from "@/lib/context/dialog-provider";
 
-const handleAddCategory = async (values: CategoryFormValues) => {
-  await addCategoryItem(values);
-};
 const getCategoryItemWithoutId = async (categoryId: string | null) => {
   if (!categoryId) return undefined;
   const categoryItem = await getCategoryItem(categoryId);
@@ -41,7 +39,7 @@ export default function ClientDialogLayer() {
   return (
     <CustomDialog title={`${IS_EDIT ? "Edit" : "Add"} Category`}>
       <CategoryForm
-        submitHandler={IS_EDIT ? handleEditCategory : handleAddCategory}
+        submitHandler={IS_EDIT ? handleEditCategory : addCategoryItem}
         values={item}
       />
     </CustomDialog>
