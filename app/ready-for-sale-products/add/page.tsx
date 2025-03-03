@@ -13,7 +13,7 @@ export default async function AddProductPage() {
 
   return (
     <main className="container mx-auto p-8">
-      <h1 className="text-center">Add Product Form</h1>
+      <h1 className="text-center text-2xl">Add Product Form</h1>
       <ReadyForSaleProductsForm
         submitHandler={addReadyForSaleProductItem}
         products={products}

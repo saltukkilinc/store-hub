@@ -35,7 +35,7 @@ export default async function EditInventoryPage({
   };
   return (
     <main className="container mx-auto p-8">
-      <h1 className="text-center">Edit Inventory Form</h1>
+      <h1 className="text-center text-2xl">Edit Inventory Form</h1>
       <InventoryForm
         submitHandler={handleEditInventory}
         values={getInventoryItemWithoutId()}

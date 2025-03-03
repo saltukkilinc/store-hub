@@ -7,7 +7,7 @@ export default async function InventoryManagementPage() {
   const data = await getInventory();
   return (
     <main className="container mx-auto p-8">
-      <h1>Inventory Management</h1>
+      <h1 className="text-2xl">Inventory Management</h1>
       <DataTableGroup
         columns={inventoryDataTableColumns}
         data={data}

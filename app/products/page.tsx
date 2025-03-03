@@ -43,7 +43,7 @@ export default async function ProductsPage({
 
   return (
     <main className="container p-8 mx-auto">
-      <h1>Product Management</h1>
+      <h1 className="text-2xl">Product Management</h1>
       <DataTableGroup
         columns={productDataTableColumns}
         data={data}

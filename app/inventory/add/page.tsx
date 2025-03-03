@@ -12,7 +12,7 @@ export default async function AddInventoryPage() {
   ]);
   return (
     <main className="container mx-auto p-8">
-      <h1 className="text-center">Add Inventory Form</h1>
+      <h1 className="text-center text-2xl">Add Inventory Form</h1>
       <InventoryForm
         submitHandler={addInventoryItem}
         products={products}

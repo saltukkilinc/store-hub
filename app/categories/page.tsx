@@ -8,7 +8,7 @@ export default async function CategoryPage() {
 
   return (
     <main className="container p-8 mx-auto">
-      <h1>Category Management</h1>
+      <h1 className="text-2xl">Category Management</h1>
       <DataTableGroup
         columns={categoryDataTableColumns}
         data={data}

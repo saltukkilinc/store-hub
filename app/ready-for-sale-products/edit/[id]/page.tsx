@@ -36,7 +36,7 @@ export default async function EditReadyForSaleProductsPage({
   };
   return (
     <main className="container mx-auto p-8">
-      <h1 className="text-center">Edit Ready For Sale Products Form</h1>
+      <h1 className="text-center text-2xl">Edit Ready For Sale Products Form</h1>
       <ReadyForSaleProductsForm
         submitHandler={handleEditProducts}
         values={getProductItemWithoutId()}

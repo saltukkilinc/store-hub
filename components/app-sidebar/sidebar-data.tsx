@@ -1,11 +1,22 @@
-import { Database, Store, LayoutGrid, Shapes } from "lucide-react";
-// ChartNoAxesCombined,
+import {
+  Database,
+  Store,
+  LayoutGrid,
+  Shapes,
+  ChartColumnBig,
+} from "lucide-react";
+
 export const data = {
   header: {
     title: "Store Hub",
     logoSrc: "/favicon.ico",
   },
   navMain: [
+    {
+      title: "Visual Reports",
+      url: "/visual-reports",
+      icon: <ChartColumnBig />,
+    },
     {
       title: "Categories",
       url: "/categories",

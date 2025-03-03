@@ -7,7 +7,7 @@ export default async function ReadyForSaleProductsPage() {
   const data = await getReadyForSaleProducts();
   return (
     <main className="container mx-auto p-8">
-      <h1>Ready For Sale Products</h1>
+      <h1 className="text-2xl">Ready For Sale Products</h1>
       <DataTableGroup
         columns={inventoryDataTableColumns}
         data={data}
