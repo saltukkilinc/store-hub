@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "../../components/data-table-group/data-table-column-header";
 import { deleteReadyForSaleProductItem } from "@/lib/actions/ready-for-sale-products-actions";
-import SelectCheckbox from "@/components/data-table-group/data-table-select-checbox";
+import DataTableSelectCheckbox from "@/components/data-table-group/data-table-select-checkbox";
 import DataTableActionDropdown from "@/components/data-table-group/data-table-action-dropdown";
 
 export type ReadyForSaleProductsType = {
@@ -22,8 +22,12 @@ export const inventoryDataTableColumns: ColumnDef<ReadyForSaleProductsType>[] =
   [
     {
       id: "select",
-      header: ({ table }) => <SelectCheckbox table={table} type="header" />,
-      cell: ({ row, table }) => <SelectCheckbox row={row} table={table} />,
+      header: ({ table }) => (
+        <DataTableSelectCheckbox table={table} type="header" />
+      ),
+      cell: ({ row, table }) => (
+        <DataTableSelectCheckbox row={row} table={table} />
+      ),
       enableSorting: false,
       enableHiding: false,
     },

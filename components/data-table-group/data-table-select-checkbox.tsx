@@ -5,17 +5,17 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useDialogContext } from "@/lib/context/dialog-provider";
 import { Button } from "../ui/button";
 
-type SelectCheckboxPropsType<TData extends { id: string }> = {
+type DataTableSelectCheckboxPropsType<TData extends { id: string }> = {
   table: Table<TData>;
   row?: Row<TData>;
   type?: "header" | "cell";
 };
 
-export default function SelectCheckbox<TData extends { id: string }>({
+export default function DataTableSelectCheckbox<TData extends { id: string }>({
   row,
   table,
   type = "cell",
-}: SelectCheckboxPropsType<TData>) {
+}: DataTableSelectCheckboxPropsType<TData>) {
   const { dispatch } = useDialogContext();
   return (
     <Checkbox

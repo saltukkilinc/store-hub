@@ -1,11 +1,12 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
+
 import { Button } from "@/components/ui/button";
-import { DataTableColumnHeader } from "../../components/data-table-group/data-table-column-header";
+import { DataTableColumnHeader } from "@/components/data-table-group/data-table-column-header";
+import DataTableActionDropdown from "@/components/data-table-group/data-table-action-dropdown";
 import { useDialogContext } from "@/lib/context/dialog-provider";
 import { deleteCategoryItem } from "@/lib/actions/category-actions";
-import DataTableActionDropdown from "@/components/data-table-group/data-table-action-dropdown";
 
 export type CategoryType = {
   id: string;
