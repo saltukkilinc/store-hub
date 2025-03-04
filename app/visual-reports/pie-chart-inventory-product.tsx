@@ -1,7 +1,6 @@
 "use client";
 
 import { Pie, PieChart } from "recharts";
-
 import {
   Card,
   CardContent,
@@ -12,49 +11,34 @@ import {
 import {
   ChartConfig,
   ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { InventoryType } from "../inventory/inventory-data-table-columns";
-
-// const chartData = [
-//   { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-//   { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-//   { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
-//   { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-//   { browser: "other", visitors: 90, fill: "var(--color-other)" },
-// ];
-
-const chartConfig = {
-  stockQuantity: {
-    label: "Stock Quantity",
-  },
-  product1: {
-    color: "hsl(var(--chart-1))",
-  },
-  product2: {
-    color: "hsl(var(--chart-2))",
-  },
-  product3: {
-    color: "hsl(var(--chart-3))",
-  },
-  product4: {
-    color: "hsl(var(--chart-4))",
-  },
-  product5: {
-    color: "hsl(var(--chart-5))",
-  },
-} satisfies ChartConfig;
+import { ProductType } from "../products/product-data-table-column";
+import { getRandomHslColor } from "@/lib/utils";
 
 type PieChartInventoryProductPropsType = {
   data: InventoryType[];
+  products: ProductType[];
 };
 export default function PieChartInventoryProduct({
   data,
+  products,
 }: PieChartInventoryProductPropsType) {
+  const chartConfig = products.reduce((acc: ChartConfig, product) => {
+    acc[product.productName] = {
+      label: product.productName,
+      color: getRandomHslColor(),
+    };
+    return acc;
+  }, {});
+
   const colorizedData = data.map((i, index) => ({
     ...i,
-    fill: `var(--color-product${(index % data.length) + 1})`,
+    fill: `var(--color-${products[index].productName})`,
   }));
 
   return (
@@ -79,6 +63,10 @@ export default function PieChartInventoryProduct({
               data={colorizedData}
               dataKey="stockQuantity"
               nameKey="productName"
+            />
+            <ChartLegend
+              content={<ChartLegendContent nameKey="productName" />}
+              className="-translate-y-2 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center"
             />
           </PieChart>
         </ChartContainer>

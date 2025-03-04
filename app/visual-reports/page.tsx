@@ -1,15 +1,17 @@
 import { getInventory } from "@/lib/actions/inventory-actions";
 import ExampleChart from "./example-chart";
 import PieChartInventoryProduct from "./pie-chart-inventory-product";
+import { getProducts } from "@/lib/actions/product-actions";
 
 export default async function VisualReportsPage() {
   const inventory = await getInventory();
-  console.log(inventory);
+  const products = await getProducts();
+
   return (
     <main className="container mx-auto p-8">
       <h1 className="text-2xl">Visual Reports</h1>
       <ExampleChart />
-      <PieChartInventoryProduct data={inventory} />
+      <PieChartInventoryProduct data={inventory} products={products} />
     </main>
   );
 }
