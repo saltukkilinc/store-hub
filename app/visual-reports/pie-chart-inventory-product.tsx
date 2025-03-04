@@ -29,7 +29,7 @@ export default function PieChartInventoryProduct({
   products,
 }: PieChartInventoryProductPropsType) {
   const chartConfig = products.reduce((acc: ChartConfig, product) => {
-    acc[product.productName] = {
+    acc[product.productName.replace(" ", "")] = {
       label: product.productName,
       color: getRandomHslColor(),
     };
@@ -38,7 +38,7 @@ export default function PieChartInventoryProduct({
 
   const colorizedData = data.map((i, index) => ({
     ...i,
-    fill: `var(--color-${products[index].productName})`,
+    fill: `var(--color-${products[index].productName.replace(" ", "")})`,
   }));
 
   return (
@@ -55,10 +55,7 @@ export default function PieChartInventoryProduct({
           className="mx-auto aspect-square max-h-[250px]"
         >
           <PieChart>
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
-            />
+            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
             <Pie
               data={colorizedData}
               dataKey="stockQuantity"
