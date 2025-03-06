@@ -36,9 +36,9 @@ export default function PieChartInventoryProduct({
     return acc;
   }, {});
 
-  const colorizedData = data.map((i, index) => ({
+  const colorizedData = data.map((i) => ({
     ...i,
-    fill: `var(--color-${products[index].productName.replace(" ", "")})`,
+    fill: `var(--color-${i.productName.replace(" ", "")})`,
   }));
 
   return (

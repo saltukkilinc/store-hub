@@ -28,6 +28,7 @@ export default function PieChartInventoryCategory({
   data,
   categories,
 }: PieChartInventoryCategoryPropsType) {
+  // Creating a chart config object includes label, color, icon, theme etc.
   const chartConfig = categories.reduce((acc: ChartConfig, item) => {
     acc[item.category.replace(/\s/g, "")] = {
       label: item.category,
@@ -35,11 +36,11 @@ export default function PieChartInventoryCategory({
     };
     return acc;
   }, {});
-
+  // In this data, there can be same category more than once so we are combining them.Also we are referencing the color defined in teh chart config.
   const handleCategory = () => {
     const array: { category: string; fill: string; stockQuantity: number }[] =
       [];
-    data.forEach((i, index) => {
+    data.forEach((i) => {
       const foundIndex = array.findIndex(
         (item) => item.category === i.category
       );
@@ -47,7 +48,7 @@ export default function PieChartInventoryCategory({
         array.push({
           category: i.category,
           stockQuantity: i.stockQuantity,
-          fill: `var(--color-${categories[index].category.replace(/\s/g, "")})`,
+          fill: `var(--color-${i.category.replace(/\s/g, "")})`,
         });
       }
       if (foundIndex !== -1) {
