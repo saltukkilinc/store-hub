@@ -16,18 +16,26 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { InventoryType } from "../inventory/inventory-data-table-columns";
+
 import { ProductType } from "../products/product-data-table-column";
 import { getRandomHslColor } from "@/lib/utils";
 
-type PieChartInventoryProductPropsType = {
-  data: InventoryType[];
+type PieChartProductPropsType<T extends { productName: string }> = {
+  data: T[];
   products: ProductType[];
+  title: string;
+  description: string;
+  dataKey: string;
 };
-export default function PieChartInventoryProduct({
+export default function PieChartInventoryProduct<
+  T extends { productName: string }
+>({
   data,
   products,
-}: PieChartInventoryProductPropsType) {
+  title,
+  description,
+  dataKey,
+}: PieChartProductPropsType<T>) {
   const chartConfig = products.reduce((acc: ChartConfig, product) => {
     acc[product.productName.replace(" ", "")] = {
       label: product.productName,
@@ -44,10 +52,8 @@ export default function PieChartInventoryProduct({
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pb-0">
-        <CardTitle>Inventory Product Pie Chart</CardTitle>
-        <CardDescription>
-          This chart shows the product distribution in inventory data.
-        </CardDescription>
+        <CardTitle>{title}</CardTitle>
+        <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent className="flex-1 pb-0">
         <ChartContainer
@@ -56,11 +62,7 @@ export default function PieChartInventoryProduct({
         >
           <PieChart>
             <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            <Pie
-              data={colorizedData}
-              dataKey="stockQuantity"
-              nameKey="productName"
-            />
+            <Pie data={colorizedData} dataKey={dataKey} nameKey="productName" />
             <ChartLegend
               content={<ChartLegendContent nameKey="productName" />}
               className="-translate-y-2 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center"
