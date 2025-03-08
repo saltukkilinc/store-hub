@@ -5,6 +5,8 @@ import PieChartInventoryCategory from "./pie-chart-inventory-category";
 import { getCategories } from "@/lib/actions/category-actions";
 import { getReadyForSaleProducts } from "@/lib/actions/ready-for-sale-products-actions";
 import PieChartReadyForSaleCategory from "./pie-chart-ready-for-sale-category";
+import BarChartProduct from "./bar-chart-inventory-stock-quantity";
+// import ExampleChart from "./example-chart";
 
 // import ExampleChart from "./example-chart";
 // I didn't make a one big PieChart component because it increases complexity and reduces flexibility.
@@ -13,7 +15,12 @@ export default async function VisualReportsPage() {
   const categories = await getCategories();
   const inventory = await getInventory();
   const readyForSaleProducts = await getReadyForSaleProducts();
-
+  const inventoryStockQuantityBarChartConfig = {
+    stockQuantity: {
+      label: "Stock Qty",
+      color: "hsl(var(--chart-1))",
+    },
+  };
   return (
     <main className="container mx-auto p-8">
       <h1 className="text-2xl">Visual Reports</h1>
@@ -28,6 +35,16 @@ export default async function VisualReportsPage() {
           dataKey="stockQuantity"
         />
         <PieChartInventoryCategory data={inventory} categories={categories} />
+        <BarChartProduct
+          data={inventory}
+          xAxisDataKey="productName"
+          yAxisDataKey="stockQuantity"
+          barDataKey="stockQuantity"
+          barFill="var(--color-stockQuantity)"
+          chartConfig={inventoryStockQuantityBarChartConfig}
+          title="Inventory Product Bar Chart"
+          description="This bar chart shows the product stock quantity description in the inventory data."
+        />
         <h2 className="text-xl sm:col-span-2">Ready For Sale Products</h2>
         <PieChartProduct
           data={readyForSaleProducts}
