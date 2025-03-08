@@ -1,14 +1,13 @@
-import { getInventory } from "@/lib/actions/inventory-actions";
 import PieChartProduct from "./pie-chart-product";
-import { getProducts } from "@/lib/actions/product-actions";
 import PieChartInventoryCategory from "./pie-chart-inventory-category";
-import { getCategories } from "@/lib/actions/category-actions";
-import { getReadyForSaleProducts } from "@/lib/actions/ready-for-sale-products-actions";
 import PieChartReadyForSaleCategory from "./pie-chart-ready-for-sale-category";
 import BarChartProduct from "./bar-chart-inventory-stock-quantity";
-// import ExampleChart from "./example-chart";
 
-// import ExampleChart from "./example-chart";
+import { getReadyForSaleProducts } from "@/lib/actions/ready-for-sale-products-actions";
+import { getCategories } from "@/lib/actions/category-actions";
+import { getProducts } from "@/lib/actions/product-actions";
+import { getInventory } from "@/lib/actions/inventory-actions";
+
 // I didn't make a one big PieChart component because it increases complexity and reduces flexibility.
 export default async function VisualReportsPage() {
   const products = await getProducts();
@@ -19,6 +18,12 @@ export default async function VisualReportsPage() {
     stockQuantity: {
       label: "Stock Qty",
       color: "hsl(var(--chart-1))",
+    },
+  };
+  const readyForSaleProductsBarChartConfig = {
+    costPrice: {
+      label: "Cost Price",
+      color: "hsl(var(--chart-2))",
     },
   };
   return (
@@ -43,7 +48,7 @@ export default async function VisualReportsPage() {
           barFill="var(--color-stockQuantity)"
           chartConfig={inventoryStockQuantityBarChartConfig}
           title="Inventory Product Bar Chart"
-          description="This bar chart shows the product stock quantity description in the inventory data."
+          description="This bar chart shows the product stock quantity distribution in the inventory data."
         />
         <h2 className="text-xl sm:col-span-2">Ready For Sale Products</h2>
         <PieChartProduct
@@ -56,6 +61,16 @@ export default async function VisualReportsPage() {
         <PieChartReadyForSaleCategory
           data={readyForSaleProducts}
           categories={categories}
+        />
+        <BarChartProduct
+          data={readyForSaleProducts}
+          xAxisDataKey="productName"
+          yAxisDataKey="costPrice"
+          barDataKey="costPrice"
+          barFill="var(--color-costPrice)"
+          chartConfig={readyForSaleProductsBarChartConfig}
+          title="Ready For Sale Product Bar Chart"
+          description="This bar chart shows the product cost price distribution in the ready for sale products data."
         />
       </section>
     </main>
