@@ -44,8 +44,8 @@ export default async function VisualReportsPage() {
     <main className="container mx-auto p-8">
       <h1 className="text-2xl">Visual Reports</h1>
       {/* <ExampleChart /> */}
-      <section className="grid grid-cols-1 gap-x-3 gap-y-8 sm:grid-cols-2 mt-12">
-        <h2 className="text-xl sm:col-span-2">Inventory Charts</h2>
+      <section className="grid grid-cols-1 gap-x-3 gap-y-6 sm:grid-cols-2 mt-12">
+        <h2 className="text-xl sm:col-span-2 my-2">Inventory Charts</h2>
         {!isInventoryData && (
           <CustomAlert
             title="Inventory Charts Not Found!"
@@ -85,7 +85,7 @@ export default async function VisualReportsPage() {
             description="This bar chart shows the product stock quantity distribution in the inventory data."
           />
         )}
-        <h2 className="text-xl sm:col-span-2">My Store Charts</h2>
+        <h2 className="text-xl sm:col-span-2 my-2">My Store Charts</h2>
         {!isMyStoreData && (
           <CustomAlert
             title="My Store Charts Not Found!"
