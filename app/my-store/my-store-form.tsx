@@ -65,11 +65,11 @@ const formSchema = z.object({
   productDescription: z.string().min(2, "Description is too short."),
 });
 
-export type ReadyForSaleProductsFormValues = z.infer<typeof formSchema>;
+export type MyStoreFormValues = z.infer<typeof formSchema>;
 
-type ReadyForSaleProductsFormPropsType = {
-  values?: ReadyForSaleProductsFormValues;
-  submitHandler: (values: ReadyForSaleProductsFormValues) => void;
+type MyStoreFormPropsType = {
+  values?: MyStoreFormValues;
+  submitHandler: (values: MyStoreFormValues) => void;
   products: ProductType[];
   categories: CategoryType[];
 };
@@ -84,19 +84,19 @@ const DEFAULT_FORM = {
   productDescription: "",
 };
 
-export default function ReadyForSaleProductsForm({
+export default function MyStoreForm({
   values,
   submitHandler,
   products,
   categories,
-}: ReadyForSaleProductsFormPropsType) {
+}: MyStoreFormPropsType) {
   const { dispatch } = useDialogContext();
-  const form = useForm<ReadyForSaleProductsFormValues>({
+  const form = useForm<MyStoreFormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: values ?? DEFAULT_FORM,
   });
 
-  function onSubmit(values: ReadyForSaleProductsFormValues) {
+  function onSubmit(values: MyStoreFormValues) {
     try {
       submitHandler?.(values);
       toast(

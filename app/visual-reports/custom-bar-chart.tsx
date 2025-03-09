@@ -11,7 +11,7 @@ import {
 
 import { type ChartConfig, ChartContainer } from "@/components/ui/chart";
 
-type BarChartProductsPropsType<T> = {
+type CustomBarChartPropsType<T> = {
   data: T[];
   xAxisDataKey: string;
   yAxisDataKey: string;
@@ -22,7 +22,7 @@ type BarChartProductsPropsType<T> = {
   description: string;
 };
 
-export default function BarChartProduct<T>({
+export default function CustomBarChart<T>({
   data,
   xAxisDataKey,
   yAxisDataKey,
@@ -31,7 +31,7 @@ export default function BarChartProduct<T>({
   chartConfig,
   title,
   description,
-}: BarChartProductsPropsType<T>) {
+}: CustomBarChartPropsType<T>) {
   return (
     <Card className="flex flex-col">
       <CardHeader className="items-center pl-14">

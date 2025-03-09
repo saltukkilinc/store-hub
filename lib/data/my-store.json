@@ -32,7 +32,7 @@
   {
     "productName": "Tablet",
     "category": "Electronics",
-    "availableQuantity": 10,
+    "availableQuantity": 20,
     "costPrice": 10000,
     "expenses": 200,
     "profitMarginPercentage": 25,

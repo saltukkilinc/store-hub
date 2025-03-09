@@ -42,16 +42,16 @@ export const data = {
       ],
     },
     {
-      title: "Ready For Sale Products",
+      title: "My Store",
       icon: Store,
       items: [
         {
-          title: "View Store",
-          url: "/ready-for-sale-products",
+          title: "View My Store",
+          url: "/my-store",
         },
         {
-          title: "Add Product into Store",
-          url: "/ready-for-sale-products/add",
+          title: "Add Item into My Store",
+          url: "/my-store/add",
         },
       ],
     },

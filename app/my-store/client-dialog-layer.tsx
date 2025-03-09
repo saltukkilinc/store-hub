@@ -2,7 +2,7 @@
 
 import CustomDialog from "@/components/custom-dialog";
 import { Button } from "@/components/ui/button";
-import { deleteSelectedReadyForSaleProductItems } from "@/lib/actions/ready-for-sale-products-actions";
+import { deleteSelectedReadyForSaleProductItems } from "@/lib/actions/my-store";
 
 import { useDialogContext } from "@/lib/context/dialog-provider";
 

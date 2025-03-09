@@ -3,11 +3,11 @@
 import { redirect } from "next/navigation";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTableColumnHeader } from "../../components/data-table-group/data-table-column-header";
-import { deleteReadyForSaleProductItem } from "@/lib/actions/ready-for-sale-products-actions";
+import { deleteReadyForSaleProductItem } from "@/lib/actions/my-store";
 import DataTableSelectCheckbox from "@/components/data-table-group/data-table-select-checkbox";
 import DataTableActionDropdown from "@/components/data-table-group/data-table-action-dropdown";
 
-export type ReadyForSaleProductsType = {
+export type MyStoreType = {
   id: string;
   productName: string;
   category: string;
@@ -18,7 +18,7 @@ export type ReadyForSaleProductsType = {
   productDescription: string;
 };
 
-export const inventoryDataTableColumns: ColumnDef<ReadyForSaleProductsType>[] =
+export const myStoreDataTableColumns: ColumnDef<MyStoreType>[] =
   [
     {
       id: "select",
@@ -110,7 +110,7 @@ export const inventoryDataTableColumns: ColumnDef<ReadyForSaleProductsType>[] =
         const id = row.original.id;
         const deleteHandler = () => deleteReadyForSaleProductItem(id);
         const editHandler = () =>
-          redirect(`/ready-for-sale-products/edit/${id}`);
+          redirect(`/my-store/edit/${id}`);
         return (
           <DataTableActionDropdown
             onDeleteClick={deleteHandler}
